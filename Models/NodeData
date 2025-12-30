@@ -1,0 +1,11 @@
+from sqlalchemy import Column, String, Float
+from db.base import Base
+
+class NodeData(Base):
+    __tablename__ = "node_data"
+
+    playerId            = Column(String, primary_key=True)
+    games               = Column(Int)
+    scoreBetweenness    = Column(Float)
+    scorePageRank       = Column(Float)
+    scoreDegree         = Column(Float)
