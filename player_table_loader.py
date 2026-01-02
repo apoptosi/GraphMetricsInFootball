@@ -1,13 +1,21 @@
 import json
 import glob
-import pandas as pd
+import pandas as pd # csv
 
+from database import session, init_db   # sql lite
+from Models.Player import Player
+
+
+
+init_db()
 
 # players metadata
 
 print("Loading players.json...")
 
-with open("/Dataset/players.json", "r", encoding="utf-8") as f:
+BASE_PATH = "Dataset"
+
+with open(f"{BASE_PATH}/players.json") as f:
     players = json.load(f)
 
 # dictionary for statistics
@@ -178,3 +186,34 @@ df.sort_values(by="total_matches", ascending=False, inplace=True)
 df.to_csv("player_global_stats.csv", index=False)
 
 print("File saved as player_global_stats.csv")
+
+
+
+# DB EXPORT
+for pid, stats in player_stats.items():
+    player = Player(
+        playerId=stats["playerId"],
+        firstName=stats["firstName"],
+        lastName=stats["lastName"],
+        role=stats["role"],
+        birthDate=stats["birthDate"],
+        currentTeamId=stats["currentTeamId"],
+
+        total_matches=stats["total_matches"],
+        wins=stats["wins"],
+        draws=stats["draws"],
+        losses=stats["losses"],
+
+        total_passes=stats["total_passes"],
+        completed_passes=stats["completed_passes"],
+        goals=stats["goals"],
+        assists=stats["assists"],
+        fouls_committed=stats["fouls_committed"],
+        yellow_cards=stats["yellow_cards"],
+        red_cards=stats["red_cards"],
+    )
+
+    # avoids duplicate keys
+    session.merge(player)
+
+session.commit()
