@@ -2,7 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 
-from Models import NodeData
+from db.base import Base
+from Models.NodeData import NodeData
+from Models.Player import Player
 
 DATABASE_URL = "sqlite:///data/graph_results.db"
 
