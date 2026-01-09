@@ -5,6 +5,20 @@ import os
 # from match_to_graphStats import compute_match_graph_stats
 
 DATASET_PATH = "RawData/matches"
+TEAMS_PATH = "RawData/teams.json"
+
+# ================================== LOAD TEAMS METADATA =============================================
+
+with open(TEAMS_PATH, "r", encoding="utf-8") as f:
+    teams_metadata = json.load(f)
+
+# Map: teamId (string) -> team name
+TEAM_ID_TO_NAME = {
+    str(team["wyId"]): team["name"]
+    for team in teams_metadata
+}
+
+
 
 # ================================== SINGLE MATCH STATISTICS ==============================================
 
@@ -32,17 +46,17 @@ def choose_competition():
         "European_Championship"
     ]
     
-    print("Select competition:")
+    print("\nSelect competition:")
     for i, comp in enumerate(competitions):
         print(f"{i}) {comp}")
 
-        while True:
-            choice = input("> ")
+    while True:
+        choice = input("> ")
 
-            if choice.isdigit() and 0 <= int(choice) < len(competitions):
-                return competitions[int(choice)]
-            else:
-                print("Invalid choice, try again.")
+        if choice.isdigit() and 0 <= int(choice) < len(competitions):
+            return competitions[int(choice)]
+        else:
+            print("Invalid choice, try again.")
 
 
 # Choose a match inside the chosen competition
@@ -53,25 +67,28 @@ def choose_match(matches):
         teams = match["teamsData"]
         team_ids = list(teams.keys())
 
-        team_a = teams[team_ids[0]]["teamName"]
-        team_b = teams[team_ids[1]]["teamName"]
+        team_a_id = team_ids[0]
+        team_b_id = team_ids[1]
 
-        score_a = teams[team_ids[0]]["score"]
-        score_b = teams[team_ids[1]]["score"]
+        team_a = TEAM_ID_TO_NAME.get(team_a_id, f"Team {team_a_id}")
+        team_b = TEAM_ID_TO_NAME.get(team_b_id, f"Team {team_b_id}")
+
+        score_a = teams[team_a_id]["score"]
+        score_b = teams[team_b_id]["score"]
 
         print(f"[{i}] {team_a} vs {team_b} ({score_a}-{score_b})")
 
-        while True:
-            choice = input("\nSelect match index: ")
+    while True:
+        choice = input("\nSelect match index: ")
 
-            if choice.isdigit() and 0 <= int(choice) < len(matches):
-                return matches[int(choice)]
-            else:
-                print("Invalid index, try again.")
+        if choice.isdigit() and 0 <= int(choice) < len(matches):
+            return matches[int(choice)]
+        else:
+            print("Invalid index, try again.")
 
 
 def main():
-    print("Select analysis mode:")
+    print("\nSelect analysis mode:")
     print("1) Match statistics")
     print("2) Season statistics (not implemented yet)")
 
