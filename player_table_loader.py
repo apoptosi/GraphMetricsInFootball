@@ -13,7 +13,7 @@ init_db()
 
 print("Loading players.json...")
 
-BASE_PATH = "Dataset"
+BASE_PATH = "RawData"
 
 with open(f"{BASE_PATH}/players.json") as f:
     players = json.load(f)
