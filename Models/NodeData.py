@@ -1,11 +1,11 @@
-from sqlalchemy import Column, String, Float
-from db.base import Base
+from sqlalchemy import Column, String, Float , Integer
+from Models.Base import Base
 
 class NodeData(Base):
     __tablename__ = "node_data"
 
-    playerId            = Column(String, primary_key=True)
-    games               = Column(Int)
-    scoreBetweenness    = Column(Float)
-    scorePageRank       = Column(Float)
-    scoreDegree         = Column(Float)
+    player_id            = Column(Integer, primary_key=True)
+    games                = Column(Integer)
+    score_betweenness    = Column(Float)
+    score_pagerank       = Column(Float)
+    score_degree         = Column(Float)

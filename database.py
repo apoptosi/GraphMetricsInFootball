@@ -1,41 +1,61 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, exists
 from sqlalchemy.orm import sessionmaker
-from contextlib import contextmanager
-
-from db.base import Base
+from sqlalchemy.orm import declarative_base
 from Models.NodeData import NodeData
-from Models.Player import Player
+from Models.Base import Base
 
-DATABASE_URL = "sqlite:///data/graph_results.db"
 
-engine = create_engine(DATABASE_URL, echo=False)
-SessionLocal = sessionmaker(bind=engine)
-session = SessionLocal()
-
-def init_db():
-    """Create tables if they don't exist."""
+def init_db(database_url):
+    engine = create_engine(database_url, echo=False)
     Base.metadata.create_all(engine)
 
-def add_statistic(playerId,scoreBetweenness,scorePageRank,scoreDegree)
-    playerAlreadyPresent = session.query(
-        exists().where(NodeData.playerId == playerId,)
-    ).scalar()
 
-    if playerAlreadyPresent:
-        existingNode = session.query(NodeData).filter_by(playerId = playerId,).first()
-        existingNode.games += 1
-        existingNode.scoreBetweenness += scoreBetweenness
-        existingNode.scorePageRank += scorePageRank
-        existingNode.scoreDegree += scoreDegree
+def add_graph_statistic(
+    database_url,
+    player_id,
+    score_betweenness,
+    score_pagerank,
+    score_degree
+):
+    init_db(database_url=database_url)
+
+    engine = create_engine(database_url, echo=False)
+    SessionLocal = sessionmaker(bind=engine)
+    session = SessionLocal()
+
+    try:
+        player_already_present = session.query(
+            exists().where(NodeData.player_id == player_id)
+        ).scalar()
+
+        if player_already_present:
+            existing_node = (
+                session.query(NodeData)
+                .filter_by(player_id=player_id)
+                .first()
+            )
+
+            existing_node.games += 1
+            existing_node.score_betweenness += score_betweenness
+            existing_node.score_pagerank += score_pagerank
+            existing_node.score_degree += score_degree
+
+        else:
+            new_node = NodeData(
+                player_id=int(player_id),
+                games=1,
+                score_betweenness=score_betweenness,
+                score_pagerank=score_pagerank,
+                score_degree=score_degree
+            )
+            session.add(new_node)
+
         session.commit()
-    else
-        newNode = NodeData
-        (
-            playerId = playerId,
-            games = 1,
-            scoreBetweenness = scoreBetweenness,
-            scorePageRank = scorePageRank,
-            scoreDegree = scoreDegree
-        )
-        session.add(newNode)
-        session.commit()
+        
+    except Exception as e:
+        # Catch any  unexpected error
+        print(f"Unexpected error: {e}")
+        session.rollback()
+
+    finally:
+        session.close()

@@ -2,10 +2,15 @@ import json
 import os
 
 # import the graph statistics function
-# from match_to_graphStats import compute_match_graph_stats
+from match_to_graphStats import match_to_graphStats
 
-DATASET_PATH = "RawData/matches"
-TEAMS_PATH = "RawData/teams.json"
+# The path to the json is the one specify in the 
+# estractRawData.cmd file
+
+MATCHES_DIRECTORY_PATH = "Data/matches/"
+EVENTS_DIRECTORY_PATH = "Data/Events/"
+TEAMS_PATH = "Data/Teams/teams.json"
+PLAYERS_PATH = "Data/Players/players.json"
 
 # ================================== LOAD TEAMS METADATA =============================================
 
@@ -24,7 +29,7 @@ TEAM_ID_TO_NAME = {
 
 # Load matches for a given competition (Italy, England, etc.)
 def load_matches_for_competition(competition: str):
-    file_path = os.path.join(DATASET_PATH, f"matches_{competition}.json")
+    file_path = os.path.join(MATCHES_DIRECTORY_PATH, f"matches_{competition}.json")
 
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"No matches file found for {competition}")
@@ -103,8 +108,18 @@ def main():
 
         print(f"\nRunning match statistics for matchId={match_id} ({competition})")
 
-        # Call graph/statistics computation
-        # compute_match_graph_stats(match_id=match_id, competition=competition)
+        # Covert each team stats to graphs compute and save the stats
+        file_path = os.path.join(EVENTS_DIRECTORY_PATH, f"events_{competition}.json")
+        database_url = f"sqlite:///Databases/Data_{competition}_{match_id}.db"
+        teams = match["teamsData"]
+        team_ids = list(teams.keys())
+        team_a_id = team_ids[0]
+        team_b_id = team_ids[1]
+
+        match_to_graphStats(json_path=file_path, match_id=match_id , team_id = team_a_id ,database_url = database_url)
+        match_to_graphStats(json_path=file_path, match_id=match_id , team_id = team_b_id ,database_url = database_url)
+
+        
 
     elif mode == "2":
         print("Season statistics not implemented yet.")
