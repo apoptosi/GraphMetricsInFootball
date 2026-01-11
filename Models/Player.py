@@ -10,7 +10,6 @@ class Player(Base):
     role = Column(String)
     birthDate = Column(String)
     currentTeamId = Column(String)
-    currentTeamName = Column(String)
 
     total_matches = Column(Integer)
     wins = Column(Integer)
