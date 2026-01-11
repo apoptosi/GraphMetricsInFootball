@@ -2,6 +2,7 @@ from sqlalchemy import create_engine, exists
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import declarative_base
 from Models.NodeData import NodeData
+from Models.Player import Player
 from Models.Base import Base
 
 
@@ -25,13 +26,13 @@ def add_graph_statistic(
 
     try:
         player_already_present = session.query(
-            exists().where(NodeData.player_id == player_id)
+            exists().where(NodeData.player_id == int(player_id))
         ).scalar()
 
         if player_already_present:
             existing_node = (
                 session.query(NodeData)
-                .filter_by(player_id=player_id)
+                .filter_by(player_id=int(player_id))
                 .first()
             )
 

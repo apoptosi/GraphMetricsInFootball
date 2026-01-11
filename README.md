@@ -12,8 +12,5 @@ extract all the zip in .json format inside the data folder
 
 ### compile project
 The project uses varius external libraries to compile the project locally run:
+python -m pip install -r requirements.txt
 
-- python -m pip install networkx
-- python -m pip install pandas
-- python -m pip install c
-- pip install sqlalchemy

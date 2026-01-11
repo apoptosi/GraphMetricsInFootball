@@ -93,39 +93,103 @@ def choose_match(matches):
 
 
 def main():
-    print("\nSelect analysis mode:")
-    print("1) Match statistics")
-    print("2) Season statistics (not implemented yet)")
+    while True:    
+        print("\nSelect analysis mode:")
+        print("1) Match statistics")
+        print("2) Season statistics (not implemented yet)")
 
-    mode = input("> ")
+        mode = input("> ")
 
-    if mode == "1":
-        competition = choose_competition()
-        matches = load_matches_for_competition(competition)
-        match = choose_match(matches)
+        if mode == "1":
+            competition = choose_competition()
+            matches = load_matches_for_competition(competition)
+            match = choose_match(matches)
 
-        match_id = match["wyId"]
+            match_id = match["wyId"]
+            print(f"\nRunning match statistics for matchId={match_id} ({competition})")
 
-        print(f"\nRunning match statistics for matchId={match_id} ({competition})")
+            # Covert each team stats to graphs compute and save the stats
+            #search if the db already exists to computte again or not
+            compute = True;
+            if os.path.exists(f"Databases/Data_{competition}_{match_id}.db"):
+                while True:
+                    print("Database for match already generated")
+                    print("Overwrite previus Database? (y/n)")
+                    Overwrite = input("> ")
+                    if Overwrite == "y":
+                        os.remove(f"Databases/Data_{competition}_{match_id}.db")
+                        break;
+                    elif Overwrite == "n":
+                        compute = False;
+                        break;
+                    else:
+                        print("wrong selection")
+            #Only if is needed we compute the match statistics for new matches 
+            # Or in case of overwrite
+            if compute:
+                file_path = os.path.join(EVENTS_DIRECTORY_PATH, f"events_{competition}.json")
+                database_url = f"sqlite:///Databases/Data_{competition}_{match_id}.db"
+                teams = match["teamsData"]
+                team_ids = list(teams.keys())
+                team_a_id = team_ids[0]
+                team_b_id = team_ids[1]
 
-        # Covert each team stats to graphs compute and save the stats
-        file_path = os.path.join(EVENTS_DIRECTORY_PATH, f"events_{competition}.json")
-        database_url = f"sqlite:///Databases/Data_{competition}_{match_id}.db"
-        teams = match["teamsData"]
-        team_ids = list(teams.keys())
-        team_a_id = team_ids[0]
-        team_b_id = team_ids[1]
+                match_to_graphStats(json_path=file_path, match_id=match_id , team_id = team_a_id ,database_url = database_url)
+                match_to_graphStats(json_path=file_path, match_id=match_id , team_id = team_b_id ,database_url = database_url)
 
-        match_to_graphStats(json_path=file_path, match_id=match_id , team_id = team_a_id ,database_url = database_url)
-        match_to_graphStats(json_path=file_path, match_id=match_id , team_id = team_b_id ,database_url = database_url)
+        elif mode == "2":
+            competition = choose_competition()
+            matches = load_matches_for_competition(competition)
 
+            compute = True;
+            if os.path.exists(f"Databases/Data_{competition}.db"):
+                while True:
+                    print("Database for match already generated")
+                    print("Overwrite previus Database? (y/n)")
+                    Overwrite = input("> ")
+                    if Overwrite == "y":
+                        os.remove(f"Databases/Data_{competition}.db")
+                        break;
+                    elif Overwrite == "n":
+                        compute = False;
+                        break;
+                    else:
+                        print("wrong selection")
+
+            #Only if is needed we compute the match statistics for new matches 
+            # Or in case of overwrite
+            if compute:
+                file_path = os.path.join(EVENTS_DIRECTORY_PATH, f"events_{competition}.json")
+                database_url = f"sqlite:///Databases/Data_{competition}.db"
+                total = len(matches)
+                for i, match in enumerate(matches):
+                    teams = match["teamsData"]
+
+                    team_ids = list(teams.keys())
+                    team_a_id = team_ids[0]
+                    team_b_id = team_ids[1]
+                    team_a = TEAM_ID_TO_NAME.get(team_a_id, f"Team {team_a_id}")
+                    team_b = TEAM_ID_TO_NAME.get(team_b_id, f"Team {team_b_id}")
+                    score_a = teams[team_a_id]["score"]
+                    score_b = teams[team_b_id]["score"]
+
+                    print(f"computing {team_a} vs {team_b} ({score_a}-{score_b})")
+                    match_to_graphStats(json_path=file_path, match_id=match["wyId"] , team_id = team_a_id ,database_url = database_url)
+                    match_to_graphStats(json_path=file_path, match_id=match["wyId"] , team_id = team_b_id ,database_url = database_url)
+                    
+                    percent = ((i+1)/total)*100
+                    print(f"computation {percent}% done")
+
+
+        else:
+            print("Invalid choice.")
         
+        #ask the user if it wants to perform another computation or leave
+        print("press any key to continue or (q) to exit the program")
+        selection = input("> ")
+        if selection == "q":
+            break
 
-    elif mode == "2":
-        print("Season statistics not implemented yet.")
-
-    else:
-        print("Invalid choice.")
 
 
 if __name__ == "__main__":
