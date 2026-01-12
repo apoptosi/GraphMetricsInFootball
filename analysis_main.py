@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import os
 from contextlib import contextmanager
 
 
@@ -35,6 +36,7 @@ def load_db(competition):
 def filter_reliable_players(df, min_games=10):
     return df[df["games"] >= min_games].copy()
 
+# ====================================================== CENTRALITIES ===========================================================
 
 # MERGE AND NORMALIZE CENTRALITIES
 def build_analysis_dataframe(players, node_data):
@@ -57,7 +59,7 @@ def build_analysis_dataframe(players, node_data):
     return df
 
 
-# PLAYER RANKINGS OVER A METRIC
+# PLAYER RANKINGS OVER A METRIC -> print top k results
 def rank_players(df, metric, top_k=10):
     ranked = (
         df.sort_values(metric, ascending=False)
@@ -69,7 +71,7 @@ def rank_players(df, metric, top_k=10):
     print(ranked.to_string(index=False))
 
 
-# DEGREE CENTRALITY CONSISTENCY
+# DEG CENTRALITY CONSISTENCY -> which players remain central while playing many matches
 def centrality_consistency(df, metric="avg_degree", min_games=20):
     filtered = df[df["games"] >= min_games]
 
@@ -84,7 +86,7 @@ def centrality_consistency(df, metric="avg_degree", min_games=20):
     ]].head(10).to_string(index=False))
 
 
-# INDIVIDUAL RECOGNITION vs CENTRALITY
+# INDIVIDUAL RECOGNITION vs CENTRALITY -> do more central players perform better too?
 def recognition_vs_centrality(df, metric):
     df = df.copy()
     df["recognition"] = df["goals"] + df["assists"]
@@ -98,7 +100,7 @@ def recognition_vs_centrality(df, metric):
     )
 
 
-# TEAM SUCCESS vs CENTRALITY
+# TEAM SUCCESS vs CENTRALITY -> do players that are more central also belong to winning teams?
 def success_vs_centrality(df, metric):
     df = df.copy()
     df["win_rate"] = df["wins"] / df["total_matches"]
@@ -113,14 +115,89 @@ def success_vs_centrality(df, metric):
 
 
 
-# MAIN
+# ====================================================== GRAPHS ===========================================================
+def plot_scatter(
+    df,
+    x_col,
+    y_col,
+    title,
+    xlabel,
+    ylabel,
+    out_path
+):
+    plt.figure(figsize=(7, 5))
+    plt.scatter(df[x_col], df[y_col], alpha=0.6)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(out_path)
+    plt.close()
+
+
+# RECOG vs CENTR PLOT
+def plot_recognition_vs_centrality(df, competition):
+    out_dir = f"Graphs/Graph_{competition}"
+    os.makedirs(out_dir, exist_ok=True)
+
+    df = df.copy()
+    df["recognition"] = df["goals"] + df["assists"]
+
+    metrics = {
+        "avg_degree": "Average Degree Centrality",
+        "avg_betweenness": "Average Betweenness Centrality",
+        "avg_pagerank": "Average PageRank Centrality"
+    }
+
+    for metric, label in metrics.items():
+        plot_scatter(
+            df=df,
+            x_col=metric,
+            y_col="recognition",
+            title=f"{competition}: Recognition vs {label}",
+            xlabel=label,
+            ylabel="Goals + Assists",
+            out_path=f"{out_dir}/recognition_vs_{metric}.png"
+        )
+
+# TEAM SUCCESS vs CENTR PLOT
+def plot_success_vs_centrality(df, competition):
+    out_dir = f"Graphs/Graph_{competition}"
+    os.makedirs(out_dir, exist_ok=True)
+
+    df = df.copy()
+    df["win_rate"] = df["wins"] / df["total_matches"]
+
+    metrics = {
+        "avg_degree": "Average Degree Centrality",
+        "avg_betweenness": "Average Betweenness Centrality",
+        "avg_pagerank": "Average PageRank Centrality"
+    }
+
+    for metric, label in metrics.items():
+        plot_scatter(
+            df=df,
+            x_col=metric,
+            y_col="win_rate",
+            title=f"{competition}: Win Rate vs {label}",
+            xlabel=label,
+            ylabel="Win Rate",
+            out_path=f"{out_dir}/success_vs_{metric}.png"
+        )
+
+
+
+
+# ======================================================= MAIN ==============================================================
 def main():
-    competition = "World_Cup"
+    competition = "European_Championship"
 
     # output file
     output_path = f"Results/results_{competition}.txt"
 
     # FOR EU CUP AND WORLD CUP SET MIN GAMES TO 5, OR ELSE OUTPUT IS EMPTY
+
     players, node_data = load_db(competition)
     df = build_analysis_dataframe(players, node_data)
     df = filter_reliable_players(df, min_games=10)
@@ -144,6 +221,10 @@ def main():
             success_vs_centrality(df, m)
 
     print(f"Results written to {output_path}")
+
+    # plots
+    plot_recognition_vs_centrality(df, competition)
+    plot_success_vs_centrality(df, competition)
 
 
 if __name__ == "__main__":
