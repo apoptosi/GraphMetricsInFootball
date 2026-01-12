@@ -1,0 +1,62 @@
+
+Top 10 players by avg_degree:
+       firstName                     lastName role  avg_degree  games
+           Mats                       Hummels   DF  148.192308     26
+J\u00e9r\u00f4me                      Boateng   DF  145.526316     19
+           Kevin                         Vogt   DF  136.870968     31
+       \u00d6mer                       Toprak   DF  133.115385     26
+          Joshua                      Kimmich   DF  132.142857     28
+          Thiago Alc\u00e2ntara do Nascimento   MD  130.789474     19
+           Diego                        Demme   MD  130.266667     30
+     James David         Rodr\u00edguez Rubio   MD  125.608696     23
+ Charles Mariano       Ar\u00e1nguiz Sandoval   MD  121.592593     27
+        Sokratis             Papastathopoulos   DF  121.241379     29
+
+Top 10 players by avg_betweenness:
+         firstName               lastName role  avg_betweenness  games
+    Pierre-Emerick             Aubameyang   FW         0.163338     16
+             Michy        Batshuayi Tunga   FW         0.160506     10
+              Sven                Ulreich   GK         0.138607     29
+Lucas Nicol\u00e1s                 Alario   FW         0.138410     23
+             Mario G\u00f3mez Garc\u00eda   FW         0.133397     28
+            Robert            Lewandowski   FW         0.130836     30
+            Sandro                 Wagner   FW         0.130504     25
+         Yoshinori                   Muto   FW         0.125667     27
+              Timo                 Werner   FW         0.125359     32
+             Bernd                   Leno   GK         0.124929     33
+
+Top 10 players by avg_pagerank:
+      firstName               lastName role  avg_pagerank  games
+          Kevin                   Vogt   DF      0.131779     31
+         Daniel                  Baier   MD      0.130875     29
+          Diego                  Demme   MD      0.128585     30
+         Niklas              Moisander   DF      0.119702     25
+          Robin                 Knoche   DF      0.119137     24
+          Salif              San\u00e9   DF      0.118999     32
+       Benjamin                 Pavard   DF      0.115931     34
+Charles Mariano Ar\u00e1nguiz Sandoval   MD      0.112671     27
+    Carlos Joel Salcedo Hern\u00e1ndez   DF      0.111461     20
+         Jannik            Vestergaard   DF      0.111454     32
+
+Most consistent players:
+         firstName               lastName  games  avg_degree
+             Mats                 Hummels     26  148.192308
+             Kevin                   Vogt     31  136.870968
+         \u00d6mer                 Toprak     26  133.115385
+            Joshua                Kimmich     28  132.142857
+             Diego                  Demme     30  130.266667
+       James David   Rodr\u00edguez Rubio     23  125.608696
+   Charles Mariano Ar\u00e1nguiz Sandoval     27  121.592593
+          Sokratis       Papastathopoulos     29  121.241379
+M\u00e1rcio Rafael      Ferreira de Souza     27  118.407407
+            Niklas              S\u00fcle     27  115.185185
+
+--- Individual recognition vs centrality ---
+Spearman correlation (avg_degree vs recognition): -0.128
+Spearman correlation (avg_betweenness vs recognition): 0.282
+Spearman correlation (avg_pagerank vs recognition): -0.231
+
+--- Team success vs centrality ---
+Spearman correlation (avg_degree vs win rate): 0.203
+Spearman correlation (avg_betweenness vs win rate): 0.048
+Spearman correlation (avg_pagerank vs win rate): -0.008

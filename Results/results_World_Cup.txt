@@ -1,0 +1,62 @@
+
+Top 10 players by avg_degree:
+      firstName         lastName role  avg_degree  games
+           Kyle           Walker   DF  147.600000      5
+           Toby     Alderweireld   DF  147.166667      6
+           John           Stones   DF  134.285714      7
+           Luka      Modri\u0107   MD  131.571429      7
+       Philippe Coutinho Correia   FW  126.800000      5
+        Marcelo    Brozovi\u0107   MD  117.833333      6
+           Ivan     Rakiti\u0107   MD  115.142857      7
+         Harry           Maguire   DF  113.714286      7
+Thiago Emiliano         da Silva   DF  113.200000      5
+        Vincent          Kompany   DF  113.000000      5
+
+Top 10 players by avg_betweenness:
+       firstName              lastName role  avg_betweenness  games
+         Olivier                Giroud   FW         0.185717      7
+         Danijel     Suba\u0161i\u0107   GK         0.169567      6
+Gabriel Fernando              de Jesus   FW         0.137680      5
+           Harry                  Kane   FW         0.134933      6
+          Romelu         Lukaku Menama   FW         0.133377      6
+    Luis Alberto Su\u00e1rez D\u00edaz   FW         0.132876      5
+            Ivan     Peri\u0161i\u0107   MD         0.125785      7
+            Hugo                Lloris   GK         0.123398      6
+           Danny                  Rose   DF         0.122026      5
+          Kylian    Mbapp\u00e9 Lottin   FW         0.119006      7
+
+Top 10 players by avg_pagerank:
+          firstName         lastName role  avg_pagerank  games
+               Kyle           Walker   DF      0.133499      5
+               Toby     Alderweireld   DF      0.131272      6
+               Paul            Pogba   MD      0.117337      6
+               John           Stones   DF      0.116879      7
+               Luka      Modri\u0107   MD      0.114488      7
+             N'Golo       Kant\u00e9   MD      0.111577      7
+           Benjamin           Pavard   DF      0.111231      6
+           Philippe Coutinho Correia   FW      0.108640      5
+            Marcelo    Brozovi\u0107   MD      0.108266      6
+M\u00e1rio Figueira        Fernandes   DF      0.108195      5
+
+Most consistent players:
+      firstName         lastName  games  avg_degree
+           Kyle           Walker      5  147.600000
+           Toby     Alderweireld      6  147.166667
+           John           Stones      7  134.285714
+           Luka      Modri\u0107      7  131.571429
+       Philippe Coutinho Correia      5  126.800000
+        Marcelo    Brozovi\u0107      6  117.833333
+           Ivan     Rakiti\u0107      7  115.142857
+         Harry           Maguire      7  113.714286
+Thiago Emiliano         da Silva      5  113.200000
+        Vincent          Kompany      5  113.000000
+
+--- Individual recognition vs centrality ---
+Spearman correlation (avg_degree vs recognition): 0.070
+Spearman correlation (avg_betweenness vs recognition): 0.169
+Spearman correlation (avg_pagerank vs recognition): -0.015
+
+--- Team success vs centrality ---
+Spearman correlation (avg_degree vs win rate): 0.067
+Spearman correlation (avg_betweenness vs win rate): 0.102
+Spearman correlation (avg_pagerank vs win rate): 0.082

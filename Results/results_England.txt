@@ -1,0 +1,62 @@
+
+Top 10 players by avg_degree:
+               firstName           lastName role  avg_degree  games
+Nicol\u00e1s Hern\u00e1n           Otamendi   DF  174.235294     34
+           Fernando Luiz               Rosa   MD  167.029412     34
+        David Josu\u00e9 Jim\u00e9nez Silva   MD  164.206897     29
+                 Vincent            Kompany   DF  163.294118     17
+                  Granit              Xhaka   MD  156.368421     38
+            Jordan Brian          Henderson   MD  147.444444     27
+              C\u00e9sar  Azpilicueta Tanco   DF  146.486486     37
+                    Kyle             Walker   DF  144.687500     32
+                   Kevin          De Bruyne   MD  144.162162     37
+                  Fabian              Delph   MD  144.000000     22
+
+Top 10 players by avg_betweenness:
+     firstName          lastName role  avg_betweenness  games
+         Harry              Kane   FW         0.215304     37
+       Ederson Santana de Moraes   GK         0.179089     36
+         Loris            Karius   GK         0.176356     19
+        Romelu     Lukaku Menama   FW         0.170740     34
+Pierre-Emerick        Aubameyang   FW         0.154175     13
+          Petr         \u010cech   GK         0.149367     34
+        Shane               Long   FW         0.140273     30
+        Callum            Wilson   FW         0.136492     28
+         Jamie             Vardy   FW         0.135132     37
+        Joshua              King   FW         0.135062     33
+
+Top 10 players by avg_pagerank:
+      firstName          lastName role  avg_pagerank  games
+      Abdoulaye     Doucour\u00e9   MD      0.139801     37
+          Aaron              Mooy   MD      0.127604     36
+        Nemanja        Mati\u0107   MD      0.125580     36
+     C\u00e9sar Azpilicueta Tanco   DF      0.125573     37
+         Granit             Xhaka   MD      0.122980     38
+           Dale          Stephens   MD      0.120119     36
+         Steven            Defour   MD      0.119457     24
+Onyinye Wilfred             Ndidi   MD      0.116828     33
+           Kyle          Naughton   DF      0.116692     34
+           Luka  Milivojevi\u0107   MD      0.116562     36
+
+Most consistent players:
+               firstName           lastName  games  avg_degree
+Nicol\u00e1s Hern\u00e1n           Otamendi     34  174.235294
+           Fernando Luiz               Rosa     34  167.029412
+        David Josu\u00e9 Jim\u00e9nez Silva     29  164.206897
+                  Granit              Xhaka     38  156.368421
+            Jordan Brian          Henderson     27  147.444444
+              C\u00e9sar  Azpilicueta Tanco     37  146.486486
+                    Kyle             Walker     32  144.687500
+                   Kevin          De Bruyne     37  144.162162
+                  Fabian              Delph     22  144.000000
+                   Mesut          \u00d6zil     26  137.538462
+
+--- Individual recognition vs centrality ---
+Spearman correlation (avg_degree vs recognition): -0.049
+Spearman correlation (avg_betweenness vs recognition): 0.152
+Spearman correlation (avg_pagerank vs recognition): -0.130
+
+--- Team success vs centrality ---
+Spearman correlation (avg_degree vs win rate): 0.338
+Spearman correlation (avg_betweenness vs win rate): 0.040
+Spearman correlation (avg_pagerank vs win rate): 0.045

@@ -1,0 +1,62 @@
+
+Top 10 players by avg_degree:
+                          firstName              lastName role  avg_degree  games
+                               Toni                 Kroos   MD  144.851852     27
+                               Ivan          Rakiti\u0107   MD  138.085714     35
+                             Sergio     Ramos Garc\u00eda   DF  136.461538     26
+                             Sergio     Busquets i Burgos   MD  133.193548     31
+                              Asier Illarramendi Andonegi   MD  132.888889     36
+        \u00c9ver Maximiliano David                Banega   MD  131.258065     31
+                             Daniel        Carvajal Ramos   DF  128.600000     25
+                               Marc        Bartra Aregall   DF  128.125000     16
+Steven N'Kemboanza Mike Christopher               N'Zonzi   MD  127.333333     27
+                              Jordi            Alba Ramos   DF  126.545455     33
+
+Top 10 players by avg_betweenness:
+         firstName                 lastName role  avg_betweenness  games
+Lorenzo Jes\u00fas   Mor\u00f3n Garc\u00eda   FW         0.180927     15
+       C\u00e9dric                  Bakambu   FW         0.153908     15
+       Maximiliano G\u00f3mez Gonz\u00e1lez   FW         0.152580     36
+            Keylor             Navas Gamboa   GK         0.149889     27
+          Jonathan                  Calleri   FW         0.138163     37
+          Norberto              Murara Neto   GK         0.137147     33
+         Francisco      Casilla Cort\u00e9s   GK         0.135636     10
+            Marcos          Llorente Moreno   MD         0.134791     13
+             Lucas P\u00e9rez Mart\u00ednez   FW         0.132930     35
+           Sergio        Asenjo Andr\u00e9s   GK         0.131783     23
+
+Top 10 players by avg_pagerank:
+                          firstName                   lastName role  avg_pagerank  games
+                             Daniel          Parejo Mu\u00f1oz   MD      0.140781     34
+                            Rodrigo    Hern\u00e1ndez Cascante   MD      0.135636     37
+        \u00c9ver Maximiliano David                     Banega   MD      0.128924     31
+                Rub\u00e9n Salvador P\u00e9rez Del M\u00e1rmol   MD      0.128353     31
+                              Asier      Illarramendi Andonegi   MD      0.126551     36
+Steven N'Kemboanza Mike Christopher                    N'Zonzi   MD      0.125310     27
+                           Jonathan                Viera Ramos   MD      0.118970     23
+               Jos\u00e9 \u00c1ngel    G\u00f3mez Campa\u00f1a   MD      0.118672     35
+                              Jorge  Resurrecci\u00f3n Merodio   MD      0.118668     35
+                          Alejandro         Granell Nogu\u00e9   MD      0.118315     34
+
+Most consistent players:
+                          firstName              lastName  games  avg_degree
+                               Toni                 Kroos     27  144.851852
+                               Ivan          Rakiti\u0107     35  138.085714
+                             Sergio     Ramos Garc\u00eda     26  136.461538
+                             Sergio     Busquets i Burgos     31  133.193548
+                              Asier Illarramendi Andonegi     36  132.888889
+        \u00c9ver Maximiliano David                Banega     31  131.258065
+                             Daniel        Carvajal Ramos     25  128.600000
+Steven N'Kemboanza Mike Christopher               N'Zonzi     27  127.333333
+                              Jordi            Alba Ramos     33  126.545455
+                             Daniel     Parejo Mu\u00f1oz     34  126.529412
+
+--- Individual recognition vs centrality ---
+Spearman correlation (avg_degree vs recognition): -0.010
+Spearman correlation (avg_betweenness vs recognition): 0.176
+Spearman correlation (avg_pagerank vs recognition): -0.067
+
+--- Team success vs centrality ---
+Spearman correlation (avg_degree vs win rate): 0.146
+Spearman correlation (avg_betweenness vs win rate): 0.146
+Spearman correlation (avg_pagerank vs win rate): -0.032

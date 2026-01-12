@@ -1,0 +1,62 @@
+
+Top 10 players by avg_degree:
+                     firstName              lastName role  avg_degree  games
+                          Toni                 Kroos   MD  209.333333      6
+              J\u00e9r\u00f4me               Boateng   DF  149.666667      6
+                         Mesut             \u00d6zil   MD  136.500000      6
+                       William     Silva de Carvalho   MD  134.200000      5
+                          Paul                 Pogba   MD  124.428571      7
+                         Jonas                Hector   DF  120.833333      6
+Rapha\u00ebl Adelino Jos\u00e9             Guerreiro   DF  113.200000      5
+                      Grzegorz            Krychowiak   MD  111.400000      5
+                          Sami               Khedira   MD  109.200000      5
+                   Kl\u00e9per Laveran Lima Ferreira   DF  107.666667      6
+
+Top 10 players by avg_betweenness:
+       firstName                  lastName role  avg_betweenness  games
+         Olivier                    Giroud   FW         0.178169      6
+            Neil                    Taylor   DF         0.167447      6
+          Manuel                     Neuer   GK         0.166038      6
+          Wayne                  Hennessey   GK         0.165801      5
+Lu\u00eds Carlos          Almeida da Cunha   MD         0.164322      7
+          Thomas               M\u00fcller   FW         0.163825      6
+        Benedikt              H\u00f6wedes   DF         0.141652      6
+            Hugo                    Lloris   GK         0.138458      7
+         Thibaut                  Courtois   GK         0.133952      5
+         Ricardo Andrade Quaresma Bernardo   FW         0.127035      7
+
+Top 10 players by avg_pagerank:
+ firstName          lastName role  avg_pagerank  games
+      Toni             Kroos   MD      0.146603      6
+     Aaron            Ramsey   MD      0.122650      5
+   William Silva de Carvalho   MD      0.120720      5
+  Grzegorz        Krychowiak   MD      0.119899      5
+     James           Chester   DF      0.118885      6
+      Paul             Pogba   MD      0.117537      7
+      Eden            Hazard   FW      0.114108      5
+    Andrea          Barzagli   DF      0.113252      5
+Aron Einar        Gunnarsson   MD      0.110199      5
+     Kamil              Glik   DF      0.106767      5
+
+Most consistent players:
+                     firstName              lastName  games  avg_degree
+                          Toni                 Kroos      6  209.333333
+              J\u00e9r\u00f4me               Boateng      6  149.666667
+                         Mesut             \u00d6zil      6  136.500000
+                       William     Silva de Carvalho      5  134.200000
+                          Paul                 Pogba      7  124.428571
+                         Jonas                Hector      6  120.833333
+Rapha\u00ebl Adelino Jos\u00e9             Guerreiro      5  113.200000
+                      Grzegorz            Krychowiak      5  111.400000
+                          Sami               Khedira      5  109.200000
+                   Kl\u00e9per Laveran Lima Ferreira      6  107.666667
+
+--- Individual recognition vs centrality ---
+Spearman correlation (avg_degree vs recognition): -0.043
+Spearman correlation (avg_betweenness vs recognition): -0.019
+Spearman correlation (avg_pagerank vs recognition): -0.050
+
+--- Team success vs centrality ---
+Spearman correlation (avg_degree vs win rate): 0.085
+Spearman correlation (avg_betweenness vs win rate): 0.057
+Spearman correlation (avg_pagerank vs win rate): 0.059

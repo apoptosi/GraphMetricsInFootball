@@ -1,0 +1,62 @@
+
+Top 10 players by avg_degree:
+     firstName            lastName role  avg_degree  games
+    Jorge Luiz        Frello Filho   MD  188.787879     33
+       Kalidou           Koulibaly   DF  163.171429     35
+     Ra\u00fal    Albiol Tortajada   DF  153.741935     31
+M\u00e1rio Rui        Silva Duarte   DF  148.600000     25
+        Faouzi             Ghoulam   DF  147.545455     11
+       Giorgio           Chiellini   DF  136.280000     25
+   Medhi Amine El Mouttaqi Benatia   DF  133.600000     20
+       Daniele              Rugani   DF  133.363636     22
+       Lorenzo             Insigne   FW  131.432432     37
+         Marek    Ham\u0161\u00edk   MD  130.947368     38
+
+Top 10 players by avg_betweenness:
+           firstName                        lastName role  avg_betweenness  games
+       Mauro Emanuel                  Icardi Rivero    FW         0.187861     34
+                Edin                      D\u017eeko   FW         0.151654     36
+     Gonzalo Gerardo                    Higua\u00edn   FW         0.139367     35
+   Jos\u00e9 Manuel                  Reina P\u00e1ez   GK         0.135237     37
+      Cheick Tidiane                    Diabat\u00e9   FW         0.134668     11
+Jo\u00e3o M\u00e1rio         Naval da Costa Eduardo    MD         0.134053     14
+             Rafael  de Andrade Bittencourt Pinheiro   GK         0.133606     10
+   Andr\u00e9 Miguel                   Valente Silva   FW         0.132380     24
+             Roberto                         Inglese   FW         0.131273     34
+              Nikola                    Kalini\u0107   FW         0.127420     30
+
+Top 10 players by avg_pagerank:
+               firstName           lastName role  avg_pagerank  games
+                Federico            Viviani   MD      0.129047     29
+                    Luca           Cigarini   MD      0.126560     26
+                   Milan             Badelj   MD      0.122547     27
+                  Thiago      Rangel Cionek   DF      0.121342     15
+               Francesco         Magnanelli   MD      0.120677     32
+              Jorge Luiz       Frello Filho   MD      0.120443     33
+           Erick Antonio Pulgar Farf\u00e1n   MD      0.120218     32
+                 Armando               Izzo   DF      0.119201     16
+                 Giorgio          Chiellini   DF      0.118611     25
+Mat\u00edas Agust\u00edn          Silvestre   DF      0.118063     34
+
+Most consistent players:
+        firstName            lastName  games  avg_degree
+       Jorge Luiz        Frello Filho     33  188.787879
+          Kalidou           Koulibaly     35  163.171429
+        Ra\u00fal    Albiol Tortajada     31  153.741935
+   M\u00e1rio Rui        Silva Duarte     25  148.600000
+          Giorgio           Chiellini     25  136.280000
+      Medhi Amine El Mouttaqi Benatia     20  133.600000
+          Daniele              Rugani     22  133.363636
+          Lorenzo             Insigne     37  131.432432
+            Marek    Ham\u0161\u00edk     38  130.947368
+Elseid G\u00ebzim               Hysaj     35  129.828571
+
+--- Individual recognition vs centrality ---
+Spearman correlation (avg_degree vs recognition): 0.075
+Spearman correlation (avg_betweenness vs recognition): 0.126
+Spearman correlation (avg_pagerank vs recognition): -0.014
+
+--- Team success vs centrality ---
+Spearman correlation (avg_degree vs win rate): 0.304
+Spearman correlation (avg_betweenness vs win rate): 0.035
+Spearman correlation (avg_pagerank vs win rate): 0.018

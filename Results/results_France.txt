@@ -1,0 +1,62 @@
+
+Top 10 players by avg_degree:
+        firstName               lastName role  avg_degree  games
+            Marco               Verratti   MD  176.590909     22
+Jean Micha\u00ebl                   Seri   MD  163.483871     31
+             Yann                 M'Vila   MD  147.058824     17
+           Daniel         Alves da Silva   DF  146.440000     25
+           Thiago                  Motta   MD  134.473684     19
+     Dante Bonfim        da Costa Santos   DF  133.757576     33
+  Thiago Emiliano               da Silva   DF  129.320000     25
+           Adrien                 Rabiot   MD  128.242424     33
+           Neymar da Silva Santos Junior   FW  127.550000     20
+          Presnel               Kimpembe   DF  124.678571     28
+
+Top 10 players by avg_betweenness:
+      firstName           lastName role  avg_betweenness  games
+           Lebo            Mothiba   FW         0.163139     14
+  Walter Daniel       Ben\u00edtez   GK         0.161299     27
+Edinson Roberto  Cavani G\u00f3mez   FW         0.152334     32
+         Diafra              Sakho   FW         0.148088     12
+       Alphonse        Ar\u00e9ola   GK         0.145654     34
+        Brandon      Thomas Llamas   FW         0.141555     10
+       Alassane          Pl\u00e9a   FW         0.141347     35
+         Martin        Braithwaite   FW         0.138206     14
+    Val\u00e8re            Germain   FW         0.137532     35
+         Kylian Mbapp\u00e9 Lottin   FW         0.136512     28
+
+Top 10 players by avg_pagerank:
+          firstName             lastName role  avg_pagerank  games
+               Yann               M'Vila   MD      0.136143     17
+  Jean Micha\u00ebl                 Seri   MD      0.135276     31
+             Thomas              Mangani   MD      0.132993     35
+              Marco             Verratti   MD      0.124787     22
+   Jo\u00e3o Filipe Iria Santos Moutinho   MD      0.122208     33
+             Renaud               Cohade   MD      0.121854     38
+F\u00e1bio Henrique              Tavares   MD      0.118119     34
+       Papiss Mison           Djilobodji   DF      0.115197     30
+           Benjamin           Andr\u00e9   MD      0.114462     34
+       Dante Bonfim      da Costa Santos   DF      0.113664     33
+
+Most consistent players:
+        firstName               lastName  games  avg_degree
+            Marco               Verratti     22  176.590909
+Jean Micha\u00ebl                   Seri     31  163.483871
+           Daniel         Alves da Silva     25  146.440000
+     Dante Bonfim        da Costa Santos     33  133.757576
+  Thiago Emiliano               da Silva     25  129.320000
+           Adrien                 Rabiot     33  128.242424
+           Neymar da Silva Santos Junior     20  127.550000
+          Presnel               Kimpembe     28  124.678571
+           Maxime            Le Marchand     29  122.034483
+          Marcos  Ao\u00e1s Corr\u00eaa      26  120.692308
+
+--- Individual recognition vs centrality ---
+Spearman correlation (avg_degree vs recognition): -0.066
+Spearman correlation (avg_betweenness vs recognition): 0.199
+Spearman correlation (avg_pagerank vs recognition): -0.130
+
+--- Team success vs centrality ---
+Spearman correlation (avg_degree vs win rate): 0.259
+Spearman correlation (avg_betweenness vs win rate): 0.047
+Spearman correlation (avg_pagerank vs win rate): 0.063
