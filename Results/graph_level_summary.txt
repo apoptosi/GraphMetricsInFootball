@@ -1,0 +1,35 @@
+Competition: Italy
+Matches sampled: 15
+Average network density: 0.7196
+Average clustering coefficient: 0.1919
+
+Competition: England
+Matches sampled: 15
+Average network density: 0.7162
+Average clustering coefficient: 0.1864
+
+Competition: Spain
+Matches sampled: 15
+Average network density: 0.7165
+Average clustering coefficient: 0.1821
+
+Competition: France
+Matches sampled: 15
+Average network density: 0.7189
+Average clustering coefficient: 0.1811
+
+Competition: Germany
+Matches sampled: 15
+Average network density: 0.7233
+Average clustering coefficient: 0.1813
+
+Competition: World_Cup
+Matches sampled: 15
+Average network density: 0.6873
+Average clustering coefficient: 0.1852
+
+Competition: European_Championship
+Matches sampled: 15
+Average network density: 0.7089
+Average clustering coefficient: 0.1904
+
