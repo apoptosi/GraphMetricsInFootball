@@ -1,54 +1,40 @@
 import json
-import glob
-import pandas as pd # csv
 
-from database import session, init_db   # sql lite
+# sql lite
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from Models.Base import Base
 from Models.Player import Player
 
 
+# SELECT COMPETITION TO LOAD PLAYERS FOR
 
-init_db()
+COMPETITION = "England"
+
+DATABASE_URL = f"sqlite:///Databases/Data_{COMPETITION}.db"
+
+
+# DB session
+engine = create_engine(DATABASE_URL, echo=False)
+SessionLocal = sessionmaker(bind=engine)
+session = SessionLocal()
+
+Base.metadata.create_all(engine)
+
 
 # players metadata
 
 print("Loading players.json...")
 
-BASE_PATH = "RawData"
+BASE_PATH = "Data"
 
 with open(f"{BASE_PATH}/players.json") as f:
     players = json.load(f)
-
+    
 # dictionary for statistics
 player_stats = {}
 
-for p in players:
-    player_id = p["wyId"]
-
-    player_stats[player_id] = {
-        "playerId": player_id,
-        "firstName": p["firstName"],
-        "lastName": p["lastName"],
-        "role": p["role"]["code2"],
-        "birthDate": p["birthDate"],
-        "currentTeamId": p["currentTeamId"],
-
-        # init match stats
-        "total_matches": 0,
-        "wins": 0,
-        "draws": 0,
-        "losses": 0,
-
-        # init event statistics
-        "total_passes": 0,
-        "completed_passes": 0,
-        "goals": 0,
-        "assists": 0,
-        "fouls_committed": 0,
-        "yellow_cards": 0,
-        "red_cards": 0
-    }
-
-print(f"Loaded {len(player_stats)} players.")
+print("Initialized empty player table for competition:", COMPETITION)
 
 
 # match files
@@ -64,10 +50,13 @@ def match_result(team_score, opponent_score):
     else:
         return "draw"
 
+# Lookup dictionary
+PLAYERS_BY_ID = {p["wyId"]: p for p in players}
 
-match_files = glob.glob("/Dataset/matches/*.json")
 
-# one competition at a time
+match_files = [f"Data/matches/matches_{COMPETITION}.json"]
+
+# add new players to the table and record wins/losses
 for file_path in match_files:
     print(f"  Reading {file_path}")
 
@@ -100,8 +89,34 @@ for file_path in match_files:
                 pid = player["playerId"]
 
                 if pid not in player_stats:
-                    # skip bad ids
-                    continue
+                    # first time we see this player in this competition
+                    p = PLAYERS_BY_ID.get(pid)
+                    if p is None:
+                        continue
+
+                    team_id = p["currentTeamId"]
+
+                    player_stats[pid] = {
+                        "playerId": pid,
+                        "firstName": p["firstName"],
+                        "lastName": p["lastName"],
+                        "role": p["role"]["code2"],
+                        "birthDate": p["birthDate"],
+                        "currentTeamId": team_id,
+
+                        "total_matches": 0,
+                        "wins": 0,
+                        "draws": 0,
+                        "losses": 0,
+
+                        "total_passes": 0,
+                        "completed_passes": 0,
+                        "goals": 0,
+                        "assists": 0,
+                        "fouls_committed": 0,
+                        "yellow_cards": 0,
+                        "red_cards": 0
+                    }
 
                 player_stats[pid]["total_matches"] += 1
 
@@ -119,7 +134,7 @@ for file_path in match_files:
 # event files
 print("Processing events files...")
 
-event_files = glob.glob("/Dataset/events/*.json")
+event_files = [f"Data/events/events_{COMPETITION}.json"]
 
 for file_path in event_files:
     print(f"  Reading {file_path}")
@@ -172,22 +187,6 @@ for file_path in event_files:
         if 1701 in tags or 1703 in tags:      
             # red card
             player_stats[player_id]["red_cards"] += 1
-
-
-# CSV EXPORT
-
-print("Saving player_global_stats.csv...")
-
-# table from our dictionary, rows = keys
-df = pd.DataFrame.from_dict(player_stats, orient="index")
-# most frequent players at the top
-df.sort_values(by="total_matches", ascending=False, inplace=True)
-
-df.to_csv("player_global_stats.csv", index=False)
-
-print("File saved as player_global_stats.csv")
-
-
 
 # DB EXPORT
 for pid, stats in player_stats.items():
