@@ -8,29 +8,8 @@ from Models.Player import Player
 
 
 # SELECT COMPETITION TO LOAD PLAYERS FOR
-def choose_competition():
-    competitions = [
-        "Italy",
-        "England",
-        "Spain",
-        "France",
-        "Germany",
-        "World_Cup",
-        "European_Championship"
-    ]
 
-    print("\nSelect competition to load players from:")
-    for i, comp in enumerate(competitions):
-        print(f"{i}) {comp}")
-
-    while True:
-        choice = input("> ")
-        if choice.isdigit() and 0 <= int(choice) < len(competitions):
-            return competitions[int(choice)]
-        else:
-            print("Invalid choice, try again.")
-
-COMPETITION = choose_competition()
+COMPETITION = "England"
 
 DATABASE_URL = f"sqlite:///Databases/Data_{COMPETITION}.db"
 
@@ -51,7 +30,7 @@ BASE_PATH = "Data"
 
 with open(f"{BASE_PATH}/players.json") as f:
     players = json.load(f)
-
+    
 # dictionary for statistics
 player_stats = {}
 
