@@ -96,7 +96,7 @@ def main():
     while True:    
         print("\nSelect analysis mode:")
         print("1) Match statistics")
-        print("2) Season statistics (not implemented yet)")
+        print("2) Season statistics")
 
         mode = input("> ")
 
@@ -193,4 +193,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
