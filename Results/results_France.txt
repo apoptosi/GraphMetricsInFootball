@@ -41,7 +41,7 @@ F\u00e1bio Henrique              Tavares   MD      0.118119     34
 Most consistent players:
         firstName               lastName  games  avg_degree
             Marco               Verratti     22  176.590909
-Jean Micha\u00ebl                   Seri     31  163.483871
+     Jean Michaël                   Seri     31  163.483871
            Daniel         Alves da Silva     25  146.440000
      Dante Bonfim        da Costa Santos     33  133.757576
   Thiago Emiliano               da Silva     25  129.320000
@@ -49,7 +49,7 @@ Jean Micha\u00ebl                   Seri     31  163.483871
            Neymar da Silva Santos Junior     20  127.550000
           Presnel               Kimpembe     28  124.678571
            Maxime            Le Marchand     29  122.034483
-          Marcos  Ao\u00e1s Corr\u00eaa      26  120.692308
+          Marcos             Aoás Corrêa     26  120.692308
 
 --- Individual recognition vs centrality ---
 Spearman correlation (avg_degree vs recognition): -0.066
