@@ -6,11 +6,33 @@ To properly assess this, we need a reliable and quantifiable measure: we aim to 
 
 
 ## Project structure
-### Raw Data
-In this folder are stored all the .json data in a compress format to run the project locally just run the extractRawData.cmd that will
-extract all the zip in .json format inside the data folder
-
-### compile project
-The project uses varius external libraries to compile the project locally run:
-python -m pip install -r requirements.txt
-
+```
+GraphMetricsInFootball/
+│
+├── Data/                      # Extracted raw data (events, matches, players, teams)
+├── Databases/                 # SQLite databases (one per competition)
+│   ├── Data_Italy.db
+│   ├── Data_England.db
+│   ├── ...
+│
+├── Models/                    # SQLAlchemy models
+│   ├── Base.py
+│   ├── Player.py
+│   └── NodeData.py
+│
+├── Results/                   # Analysis outputs
+│   ├── results_Italy.txt
+│   ├── results_France.txt
+│   └── ...
+│
+├── Graphs/                    # Saved plots
+│
+├── extractRawData.cmd         # Script to extract raw JSON data
+├── database.py                # Database utilities
+├── match_to_graphStats.py     # Per-match graph construction and centrality computation
+├── player_table_loader.py     # Player statistics loader
+├── main.py                    # Interactive computation of graph metrics
+├── analysis_main.py           # Player-level analysis
+├── analysis_graph_level.py    # Graph-level (team) analysis
+└── README.md
+```
